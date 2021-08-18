@@ -18,7 +18,7 @@ const getNews = (subject) => {
 }
 
 const searchNews = (searchStr) => {
-    return fetch(`${URL}${END_POINTS.TOP_HEADLINE}?country=us&q=${searchStr}`,params)
+    return fetch(`${URL}${END_POINTS.EVERYTHING}?language=en&q=${searchStr}&sortBy=popularity`,params)
         .then(response => response.json())
         .catch(err => {
             console.error('Ocorreu um erro',err);

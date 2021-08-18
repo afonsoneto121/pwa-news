@@ -4,10 +4,13 @@ import Api from '../services'
 import './style.css';
 import PrincipalNew from './components/PrincipalNew/index';
 import CardNew from './components/CardNew/index';
+import { useHistory } from 'react-router-dom'
 
 export default memo(function Home() {
+  const history = useHistory()
   const [news, setNews] = useState({});
   const [loading, setLoading] = useState(false);
+  
   const handleNews = (articles) =>
     setNews({
       general: articles[0]?.value.articles,
@@ -18,7 +21,7 @@ export default memo(function Home() {
   
 
   const handleOnSearch = (text,event) => {
-    console.log(text)
+    history.push(`/search/${text}`);
   }
   useEffect(() => {
     setLoading(true);
