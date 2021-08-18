@@ -27,14 +27,10 @@ export default memo(function Home() {
     setLoading(true);
 
     Promise.allSettled([
-      /* Api.getNews('general'),
+      Api.getNews('general'),
       Api.getNews('science'),
       Api.getNews('sports'), 
-      Api.getNews('technology') */
-      Api.mockAPI,
-      Api.mockAPI,
-      Api.mockAPI,
-      Api.mockAPI
+      Api.getNews('technology') 
     ]).then(handleNews);
   }, [])
   if (!loading) return <div>Carregando....</div>
