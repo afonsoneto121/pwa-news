@@ -13,7 +13,7 @@ const CardNew = memo(function CardNew({ values }) {
   const renderPost = (post, index) => {
     const { title, description,url, urlToImage } = post;
     return (
-      <Col span={11} xxl={8} key={`new-${index}`}>
+      <Col span={11}  xs={22} lg={8} xxl={8} key={`new-${index}`}>
         <Card
           hoverable
           style={{ height: 280 }}

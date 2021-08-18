@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react'
-import { Layout,  Input } from 'antd'
+import { Layout,  Input, PageHeader } from 'antd'
 import Api from '../services'
 import './style.css';
 import PrincipalNew from './components/PrincipalNew/index';
@@ -37,15 +37,18 @@ export default memo(function Home() {
   return (
     <>
       <Layout >
-        <Layout.Header className="layout" theme="dark">
-            <h2>News</h2>
+        <Layout.Header className="layout" >
+        <PageHeader
+          style={{BackgroundColor: 'trasnparent'}}
+          title="News"
+        />
             <Input.Search 
             className="input"
             placeholder="input search text" 
             onSearch={handleOnSearch} 
             style={{ width: 250 }} />
         </Layout.Header>
-        <Layout.Content theme="dark">
+        <Layout.Content>
           <PrincipalNew values={news?.general} />
           <hr />
 

@@ -26,7 +26,7 @@ const PrincipalNew = memo(function PrincipalNew({ values }) {
   const renderSubNews = (post, index) => {
     const { title, description,url, urlToImage } = post;
     return (
-      <Col span={4} xs={11} sm={8} key={`new-${index}`}
+      <Col span={4} xs={21} sm={8} key={`new-${index}`}
       >
         <Card
           onClick={() =>handleClick(url)}
