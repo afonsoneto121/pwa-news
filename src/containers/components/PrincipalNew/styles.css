@@ -1,0 +1,37 @@
+.content {
+  width: 100%;
+  height: calc(100vh - 35vh);
+}
+
+.capa_new {
+  width: 100%;
+  height: calc(100% - 25%);
+  border-radius: 4px;
+  padding: auto;
+  cursor: pointer;
+}
+
+.capa_new h1 {
+  padding-top: 6px;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+}
+.capa_new p {
+  font-size: 1rem;
+  line-height: 1.1rem;
+}
+
+.aling_news {
+  height: 480px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ant-card-meta-title {
+  white-space: normal;
+}
+
+.ant-card-meta-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

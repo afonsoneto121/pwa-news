@@ -10,13 +10,20 @@ const END_POINTS = {
     TOP_HEADLINE: 'top-headlines'
 }
 const getNews = (subject) => {
-    return fetch(`${URL}${END_POINTS.TOP_HEADLINE}?category=${subject}?country=us`,params)
+    return fetch(`${URL}${END_POINTS.TOP_HEADLINE}?country=us&category=${subject}`,params)
         .then(response => response.json())
         .catch(err => {
             console.error('Ocorreu um erro',err);
         })
 }
 
+const searchNews = (searchStr) => {
+    return fetch(`${URL}${END_POINTS.TOP_HEADLINE}?country=us&q=${searchStr}`,params)
+        .then(response => response.json())
+        .catch(err => {
+            console.error('Ocorreu um erro',err);
+        })
+}
 
 const mockAPI = Promise.resolve({
     "status": "ok",
@@ -287,5 +294,6 @@ const mockAPI = Promise.resolve({
 
 export default {
     getNews,
+    searchNews,
     mockAPI
 }

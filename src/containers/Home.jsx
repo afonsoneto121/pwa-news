@@ -1,48 +1,69 @@
-import React, { memo,useEffect,useState } from 'react'
-import { Row, Col } from 'antd'
+import React, { memo, useEffect, useState } from 'react'
+import { Layout,  Input } from 'antd'
+import Api from '../services'
+import './style.css';
+import PrincipalNew from './components/PrincipalNew/index';
+import CardNew from './components/CardNew/index';
 
-import Api from '../services' 
 export default memo(function Home() {
-  const [news,setNews] = useState([]);
-  const [ loading, setLoading ] = useState(false);
-
-  const handleNews = (articles) => {
-    console.log("Article",articles);
+  const [news, setNews] = useState({});
+  const [loading, setLoading] = useState(false);
+  const handleNews = (articles) =>
     setNews({
-      science: articles[0]?.value.value,
-      sports: articles[1]?.value.value,
-      technology: articles[2]?.value.value,      
+      general: articles[0]?.value.articles,
+      science: articles[1]?.value.articles,
+      sports: articles[2]?.value.articles,
+      technology: articles[3]?.value.articles,
     });
+  
+
+  const handleOnSearch = (text,event) => {
+    console.log(text)
   }
-  useEffect(() => {    
-     Promise.allSettled([
-      /* Api.getNews('science')
-      Api.getNews('sports')
+  useEffect(() => {
+    setLoading(true);
+
+    Promise.allSettled([
+      /* Api.getNews('general'),
+      Api.getNews('science'),
+      Api.getNews('sports'), 
       Api.getNews('technology') */
       Api.mockAPI,
       Api.mockAPI,
       Api.mockAPI,
-    ]).then(handleNews); 
-    setLoading(true);
-  },[])
-  if(!loading) return <div>Carregando....</div>
+      Api.mockAPI
+    ]).then(handleNews);
+  }, [])
+  if (!loading) return <div>Carregando....</div>
   return (
-    <div>
-      <Row gutter={16}> 
-        <Col span={12}>
-          <h2>Science</h2>
-        </Col>
+    <>
+      <Layout >
+        <Layout.Header className="layout" theme="dark">
+            <h2>News</h2>
+            <Input.Search 
+            className="input"
+            placeholder="input search text" 
+            onSearch={handleOnSearch} 
+            style={{ width: 250 }} />
+        </Layout.Header>
+        <Layout.Content theme="dark">
+          <PrincipalNew values={news?.general} />
+          <hr />
 
-        <Col span={12} >
           <h2>Sports</h2>
-        </Col>
-      </Row>
-      <hr/>
-      <Row gutter={16}> 
-        <Col span={24} md={16} offset={6}>
+          <CardNew values={news?.sports} />
+          <hr />
+
+          <h2>Science</h2>
+          <CardNew values={news?.science} />
+          <hr />
+
           <h2>Technology</h2>
-        </Col>
-      </Row>
-    </div>
+          <CardNew values={news?.technology} />
+
+        </Layout.Content>
+      </Layout>
+
+    </>
   )
 })
