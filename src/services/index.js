@@ -1,6 +1,5 @@
 var myHeaders = new Headers();
-myHeaders.append("Authorization", `Bearer ${process.env.REACT_APP_API_KEY}`);
-myHeaders.append("Access-Control-Allow-Credentials", true);
+myHeaders.append("X-Api-Key", `${process.env.REACT_APP_API_KEY}`);
 
 const params = {
     headers: myHeaders,
